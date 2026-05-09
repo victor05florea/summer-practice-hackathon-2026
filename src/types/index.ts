@@ -17,6 +17,9 @@ export interface Group {
   captain_id: string;
   members: string[];
   status: string;
+  location: string | null;
+  event_time: string | null;
+  max_size: number;
   created_at: string;
 }
 
