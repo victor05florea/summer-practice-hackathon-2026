@@ -68,7 +68,10 @@ export default function GroupCard({
     if (!group) return;
     const remaining = group.members.filter((id) => id !== profile.id);
     if (remaining.length === 0) {
-      const { error } = await supabase.from("groups").delete().eq("id", group.id);
+      const { error } = await supabase
+        .from("groups")
+        .delete()
+        .eq("id", group.id);
       if (error) console.error("deleteGroup", error);
     } else {
       const updates: Partial<Group> = { members: remaining };
@@ -106,7 +109,8 @@ export default function GroupCard({
     setAiReply("");
     let res = "";
     if (kind === "venues") res = await getEventSuggestions(sport, profile.city);
-    if (kind === "welcome") res = await getWelcomeMessage(sport, group.members.length);
+    if (kind === "welcome")
+      res = await getWelcomeMessage(sport, group.members.length);
     if (kind === "icebreaker") res = await getIcebreaker(sport);
     setAiReply(res);
     setAiBusy(false);
@@ -164,7 +168,9 @@ export default function GroupCard({
             </div>
           </div>
         ) : (
-          <p className="text-sm text-gray-500 mb-4 italic mt-2">No active room.</p>
+          <p className="text-sm text-gray-500 mb-4 italic mt-2">
+            No active room.
+          </p>
         )}
 
         <div className="flex gap-2">
@@ -175,7 +181,7 @@ export default function GroupCard({
                   onClick={() => setExpanded((v) => !v)}
                   className="flex-1 py-2 bg-[#2a3038] hover:bg-[#343b45] text-gray-300 text-xs font-bold uppercase tracking-wide rounded-xl transition-colors border border-[#3e4550]"
                 >
-                  {expanded ? "Hide" : "Details"}
+                  {expanded ? "Collapse" : "Details"}
                 </button>
                 <button
                   onClick={leaveGroup}
@@ -189,14 +195,14 @@ export default function GroupCard({
                 disabled
                 className="w-full py-2 bg-[#0f1419] text-gray-600 text-xs font-bold uppercase tracking-wide rounded-xl border border-[#2a3038]"
               >
-                Room Full
+                Event Full
               </button>
             ) : (
               <button
                 onClick={joinGroup}
                 className="w-full py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold uppercase tracking-wide rounded-xl transition-colors shadow-lg shadow-emerald-500/20"
               >
-                Join Room
+                Join Event
               </button>
             )
           ) : (
@@ -204,7 +210,7 @@ export default function GroupCard({
               onClick={createGroup}
               className="w-full py-2 bg-[#2a3038] hover:bg-[#343b45] text-gray-300 text-xs font-bold uppercase tracking-wide rounded-xl transition-colors border border-[#3e4550]"
             >
-              Start Room
+              Start Event
             </button>
           )}
         </div>
@@ -316,7 +322,7 @@ export default function GroupCard({
                     disabled={aiBusy}
                     className="flex-1 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 text-xs rounded-lg border border-purple-500/20 transition-colors disabled:opacity-50"
                   >
-                    📍 Venues
+                    📍 Locations
                   </button>
                   <button
                     onClick={() => askAI("welcome")}

@@ -82,7 +82,9 @@ export default function Home({ profile, onNavigate, onProfileUpdate }: Props) {
       return;
     }
     const ok = await sendInvite(other.id, sport, null);
-    flashToast(ok ? `Invite sent to ${other.username}` : "Could not send invite.");
+    flashToast(
+      ok ? `Invite sent to ${other.username}` : "Could not send invite.",
+    );
     setSelectedProfile(null);
   };
 
@@ -108,10 +110,7 @@ export default function Home({ profile, onNavigate, onProfileUpdate }: Props) {
         <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-6">
           <div className="flex-1 space-y-4">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-xl font-bold text-gray-100">Live Rooms</h2>
-              <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full animate-pulse border border-emerald-500/20">
-                Matching Active
-              </span>
+              <h2 className="text-xl font-bold text-gray-100">Live Events</h2>
             </div>
 
             {sortedSports.length === 0 ? (
