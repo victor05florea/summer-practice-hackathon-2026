@@ -21,5 +21,5 @@ export function useProfile(userId: string | undefined) {
     });
   }, [userId]);
 
-  return { profile, setProfile, loading, refetch };
+  return { profile, loading, refetch };
 }

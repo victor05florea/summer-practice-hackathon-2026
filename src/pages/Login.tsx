@@ -28,8 +28,10 @@ export default function Login() {
     <div className="min-h-screen bg-[#0f1419] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/20">
-            <span className="text-white text-2xl">🏃</span>
+          <div className="w-19 h-19 flex items-center justify-center mx-auto mb-4">
+            <span className="text-white text-2xl">
+              <img src="/ShowUp2Move.png" alt="Logo" className="w-24 h-24" />
+            </span>
           </div>
           <h1 className="text-2xl font-semibold text-gray-100">ShowUp2Move</h1>
           <p className="text-sm text-gray-400 mt-1">

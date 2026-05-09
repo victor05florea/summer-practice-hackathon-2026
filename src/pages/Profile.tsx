@@ -1,29 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../services/supabase";
 import { type Profile } from "../types";
-
-const SPORTS = [
-  "Football",
-  "Basketball",
-  "Tennis",
-  "Running",
-  "Cycling",
-  "Volleyball",
-  "Swimming",
-  "Padel",
-  "Golf",
-  "Hiking",
-  "Yoga",
-  "Gym",
-  "Calisthenics",
-  "Skateboarding",
-  "Skiing",
-  "Boxing",
-  "Badminton",
-];
-
-const LEVELS = ["Beginner", "Intermediate", "Advanced"];
-const GENDERS = ["Male", "Female"];
+import { SPORTS, LEVELS, GENDERS } from "../constants/sports";
 
 interface Props {
   profile: Profile;

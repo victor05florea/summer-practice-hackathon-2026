@@ -1,29 +1,12 @@
 import { useState } from "react";
 import { supabase } from "../services/supabase";
+import { SPORTS, LEVELS, GENDERS } from "../constants/sports";
 
-const SPORTS = [
-  "Football",
-  "Basketball",
-  "Tennis",
-  "Running",
-  "Cycling",
-  "Volleyball",
-  "Swimming",
-  "Padel",
-  "Golf",
-  "Hiking",
-  "Yoga",
-  "Gym",
-  "Calisthenics",
-  "Skateboarding",
-  "Skiing",
-  "Boxing",
-  "Badminton",
-];
-const LEVELS = ["Beginner", "Intermediate", "Advanced"];
-const GENDERS = ["Male", "Female"];
+interface Props {
+  onComplete: () => Promise<void> | void;
+}
 
-export default function Informations() {
+export default function Informations({ onComplete }: Props) {
   const [step, setStep] = useState(1);
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
@@ -61,16 +44,22 @@ export default function Informations() {
       skill_level: skillLevel,
       available_today: false,
     });
-    if (error) setError(error.message);
     setLoading(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    await onComplete();
   };
 
   return (
     <div className="min-h-screen bg-[#0f1419] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/20">
-            <span className="text-white text-2xl">🏃</span>
+          <div className="w-19 h-19 flex items-center justify-center mx-auto mb-4">
+            <span className="text-white text-2xl">
+              <img src="/ShowUp2Move.png" alt="Logo" className="w-24 h-24" />
+            </span>
           </div>
           <h1 className="text-2xl font-semibold text-gray-100">Your profile</h1>
           <p className="text-sm text-gray-400 mt-1">Step {step} of 2</p>
@@ -93,7 +82,7 @@ export default function Informations() {
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. RunWithMe123"
+                  placeholder="ex: RunWithMe123"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-3 py-2.5 text-sm bg-[#0f1419] text-gray-100 border border-[#2a3038] rounded-lg focus:outline-none focus:border-emerald-500"
@@ -105,7 +94,7 @@ export default function Informations() {
                   Bio
                 </label>
                 <textarea
-                  placeholder="e.g. Love playing football on weekends..."
+                  placeholder="ex: Football lover, always looking for a game!⚽"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={3}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { type Session } from "@supabase/supabase-js";
 import { supabase } from "./services/supabase";
 import { useProfile } from "./hooks/useProfile";
 import Login from "./pages/Login";
@@ -7,7 +8,7 @@ import Home from "./pages/Home";
 import ProfilePage from "./pages/Profile";
 
 function App() {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [sessionLoading, setSessionLoading] = useState(true);
   const [page, setPage] = useState<"home" | "profile">("home");
   const {
@@ -31,10 +32,8 @@ function App() {
       </div>
     );
   }
-
   if (!session) return <Login />;
-  if (!profile?.username) return <Informations />;
-
+  if (!profile?.username) return <Informations onComplete={refetch} />;
   if (page === "profile") {
     return (
       <ProfilePage
@@ -45,7 +44,8 @@ function App() {
     );
   }
 
-  return <Home profile={profile} onNavigate={setPage} />;
+  return (
+    <Home profile={profile} onNavigate={setPage} onProfileUpdate={refetch} />
+  );
 }
-
 export default App;

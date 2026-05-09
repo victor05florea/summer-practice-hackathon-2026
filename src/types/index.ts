@@ -30,3 +30,13 @@ export interface Message {
   content: string;
   created_at: string;
 }
+
+export interface Invitation {
+  id: string;
+  from_user_id: string;
+  to_user_id: string;
+  sport: string;
+  group_id: string | null;
+  status: "pending" | "accepted" | "declined";
+  created_at: string;
+}
