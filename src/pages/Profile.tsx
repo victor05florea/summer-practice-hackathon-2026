@@ -11,9 +11,19 @@ const SPORTS = [
   "Volleyball",
   "Swimming",
   "Padel",
+  "Golf",
+  "Hiking",
+  "Yoga",
+  "Gym",
+  "Calisthenics",
+  "Skateboarding",
+  "Skiing",
+  "Boxing",
+  "Badminton",
 ];
+
 const LEVELS = ["Beginner", "Intermediate", "Advanced"];
-const GENDERS = ["Male", "Female", "Other"];
+const GENDERS = ["Male", "Female"];
 
 interface Props {
   profile: Profile;

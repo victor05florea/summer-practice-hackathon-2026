@@ -10,9 +10,18 @@ const SPORTS = [
   "Volleyball",
   "Swimming",
   "Padel",
+  "Golf",
+  "Hiking",
+  "Yoga",
+  "Gym",
+  "Calisthenics",
+  "Skateboarding",
+  "Skiing",
+  "Boxing",
+  "Badminton",
 ];
 const LEVELS = ["Beginner", "Intermediate", "Advanced"];
-const GENDERS = ["Male", "Female", "Other"];
+const GENDERS = ["Male", "Female"];
 
 export default function Informations() {
   const [step, setStep] = useState(1);
@@ -84,7 +93,7 @@ export default function Informations() {
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. victor_runs"
+                  placeholder="e.g. RunWithMe123"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-3 py-2.5 text-sm bg-[#0f1419] text-gray-100 border border-[#2a3038] rounded-lg focus:outline-none focus:border-emerald-500"
@@ -93,7 +102,7 @@ export default function Informations() {
 
               <div>
                 <label className="block text-sm text-gray-400 mb-1.5">
-                  Short bio <span className="text-gray-500">(optional)</span>
+                  Bio
                 </label>
                 <textarea
                   placeholder="e.g. Love playing football on weekends..."
@@ -111,7 +120,7 @@ export default function Informations() {
                   </label>
                   <input
                     type="number"
-                    placeholder="25"
+                    placeholder="20"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
                     className="w-full px-3 py-2.5 text-sm bg-[#0f1419] text-gray-100 border border-[#2a3038] rounded-lg focus:outline-none focus:border-emerald-500"
@@ -123,7 +132,7 @@ export default function Informations() {
                   </label>
                   <input
                     type="text"
-                    placeholder="Timișoara"
+                    placeholder="Timisoara"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     className="w-full px-3 py-2.5 text-sm bg-[#0f1419] text-gray-100 border border-[#2a3038] rounded-lg focus:outline-none focus:border-emerald-500"
